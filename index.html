@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ousmane Sow — Designer Créatif & Cybersécurité</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f5f3ef;
+      --bg2: #eceae4;
+      --text: #1a1916;
+      --muted: #6b6860;
+      --accent: #2d6a4f;
+      --accent2: #1b4332;
+      --gold: #b5935a;
+      --border: rgba(26,25,22,0.12);
+      --white: #ffffff;
+      --card: #ffffff;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 3rem;
+      background: rgba(245,243,239,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 7rem 3rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -100px; right: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(45,106,79,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      width: fit-content;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-badge span { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); display: inline-block; }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    .hero h1 em { color: var(--accent); font-style: italic; }
+    .hero-desc {
+      max-width: 520px;
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.6s 0.25s ease both;
+    }
+    .tag {
+      font-size: 0.78rem;
+      padding: 5px 14px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: var(--white);
+    }
+    .hero-btns {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+    .btn {
+      padding: 12px 28px;
+      border-radius: 100px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+    .btn-dark {
+      background: var(--text);
+      color: var(--white);
+      border: none;
+    }
+    .btn-dark:hover { background: var(--accent2); }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { background: var(--white); border-color: var(--text); }
+    .hero-scroll {
+      position: absolute; bottom: 2rem; left: 3rem;
+      font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em;
+      writing-mode: vertical-rl;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hero-scroll::before {
+      content: '';
+      display: block; width: 1px; height: 48px;
+      background: var(--border);
+    }
+
+    /* SECTIONS */
+    section { padding: 5rem 3rem; }
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 600;
+      line-height: 1.15;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ABOUT */
+    .about { background: var(--white); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-text { font-size: 1rem; color: var(--muted); line-height: 1.85; font-weight: 300; }
+    .about-infos { display: flex; flex-direction: column; gap: 1rem; }
+    .info-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 1rem 1.25rem;
+      background: var(--bg);
+      border-radius: 12px;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .info-icon {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .info-icon svg { width: 18px; height: 18px; stroke: white; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* SERVICES */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+    }
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem 1.5rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.06); }
+    .service-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--bg2);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .service-card h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.5rem; }
+    .service-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+    /* PROJECTS */
+    .projects { background: var(--white); }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .project-card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      background: var(--bg);
+    }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
+    .project-thumb {
+      height: 180px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem;
+    }
+    .project-body { padding: 1.5rem; }
+    .project-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
+    .project-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 600;
+    }
+    .status-pill {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 0.72rem; padding: 4px 12px;
+      border-radius: 100px;
+      background: #fef3c7; color: #92400e;
+      white-space: nowrap;
+    }
+    .status-dot { width: 5px; height: 5px; border-radius: 50%; background: #d97706; }
+    .project-body p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.25rem; }
+    .project-meta-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .project-pill {
+      font-size: 0.75rem; padding: 4px 12px;
+      border-radius: 100px; border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .project-empty {
+      grid-column: 1 / -1;
+      border: 1.5px dashed var(--border);
+      border-radius: 20px;
+      padding: 3rem;
+      text-align: center;
+      color: var(--muted);
+    }
+    .project-empty p { margin-bottom: 1rem; }
+
+    /* SKILLS */
+    .skills-section { display: flex; flex-direction: column; gap: 2.5rem; }
+    .skills-group-title {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+    .skill-item { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 1.25rem; }
+    .skill-name { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.75rem; }
+    .skill-bar-bg { height: 3px; background: var(--bg2); border-radius: 2px; overflow: hidden; }
+    .skill-bar { height: 3px; border-radius: 2px; }
+
+    /* CV */
+    .cv { background: var(--white); }
+    .cv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .cv-group-title {
+      font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold); font-weight: 500; margin-bottom: 1.5rem;
+    }
+    .cv-timeline { display: flex; flex-direction: column; gap: 0; }
+    .cv-item { display: flex; gap: 1.25rem; padding-bottom: 1.75rem; position: relative; }
+    .cv-item:not(:last-child)::before {
+      content: '';
+      position: absolute; left: 7px; top: 18px; bottom: 0;
+      width: 1px; background: var(--border);
+    }
+    .cv-dot {
+      width: 16px; height: 16px; border-radius: 50%;
+      border: 2px solid var(--white);
+      flex-shrink: 0; margin-top: 4px;
+      box-shadow: 0 0 0 2px var(--border);
+    }
+    .cv-content h4 { font-size: 0.95rem; font-weight: 500; margin-bottom: 3px; }
+    .cv-org { font-size: 0.85rem; color: var(--muted); }
+    .cv-date { font-size: 0.78rem; color: var(--gold); margin-top: 2px; }
+
+    /* CONTACT */
+    .contact-wrapper {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+    }
+    .contact-intro { font-size: 1rem; color: var(--muted); font-weight: 300; line-height: 1.8; margin-bottom: 2rem; }
+    .contact-items { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 1rem 1.25rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 0.9rem; color: var(--text);
+      text-decoration: none;
+      transition: border-color 0.2s;
+    }
+    .contact-item:hover { border-color: var(--accent); }
+    .contact-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: var(--bg2);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .contact-icon svg { width: 16px; height: 16px; stroke: var(--muted); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .contact-form { display: flex; flex-direction: column; gap: 12px; }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 0.9rem;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .contact-form input:focus, .contact-form textarea:focus { border-color: var(--accent); }
+    .contact-form textarea { height: 130px; resize: none; }
+    .contact-form .btn { width: 100%; text-align: center; }
+
+    /* FOOTER */
+    footer {
+      background: var(--text);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 2rem 3rem;
+      font-size: 0.82rem;
+    }
+    footer strong { color: rgba(255,255,255,0.85); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 3.5rem 1.5rem; }
+      .hero { padding: 6rem 1.5rem 3rem; }
+      .about-grid, .cv-grid, .contact-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">OS.</a>
+  <ul class="nav-links">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projets</a></li>
+    <li><a href="#skills">Compétences</a></li>
+    <li><a href="#cv">CV</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-badge">
+    <span></span> Disponible pour des missions freelance
+  </div>
+  <h1>Ousmane<br><em>Sow</em></h1>
+  <p class="hero-desc">Designer créatif & étudiant en cybersécurité basé à Dakar. Je crée des supports visuels percutants et des solutions innovantes pour l'agriculture africaine.</p>
+  <div class="hero-tags">
+    <span class="tag">📍 Dakar, Sénégal</span>
+    <span class="tag">🎨 Designer Créatif</span>
+    <span class="tag">🔐 Cybersécurité</span>
+    <span class="tag">🌱 KaarangeBaay</span>
+  </div>
+  <div class="hero-btns">
+    <a href="#projects" class="btn btn-dark">Voir mes projets</a>
+    <a href="#contact" class="btn btn-outline">Me contacter</a>
+  </div>
+  <div class="hero-scroll">Défiler</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="fade-up">
+    <p class="section-label">À propos</p>
+    <h2 class="section-title">Une double expertise,<br>un profil unique</h2>
+  </div>
+  <div class="about-grid fade-up">
+    <p class="about-text">
+      Étudiant en cybersécurité et designer graphique passionné, je développe une double expertise rare qui me permet d'allier esthétique et sécurité dans mes projets. Basé à Dakar, je crée des supports visuels professionnels — affiches, flyers, cartes de visite, brochures — tout en travaillant sur des solutions technologiques innovantes avec mon équipe KaarangeBaay pour réduire les vulnérabilités dans le secteur agricole sénégalais.
+    </p>
+    <div class="about-infos">
+      <div class="info-item">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        Étudiant en cybersécurité
+      </div>
+      <div class="info-item">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        Design graphique & Print
+      </div>
+      <div class="info-item">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2z"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        Disponible en freelance – Dakar
+      </div>
+      <div class="info-item">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        Co-fondateur – KaarangeBaay
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="fade-up">
+    <p class="section-label">Services</p>
+    <h2 class="section-title">Ce que je crée<br>pour vous</h2>
+  </div>
+  <div class="services-grid fade-up">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <h3>Affiches</h3>
+      <p>Création d'affiches événementielles et publicitaires accrocheuses qui captent l'attention.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <h3>Flyers</h3>
+      <p>Flyers promotionnels clairs et efficaces pour toutes occasions et tous budgets.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <h3>Cartes de visite</h3>
+      <p>Cartes de visite élégantes et mémorables qui reflètent votre identité professionnelle.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <h3>Brochures</h3>
+      <p>Brochures professionnelles et bien structurées pour présenter vos produits et services.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <div class="fade-up">
+    <p class="section-label">Projets</p>
+    <h2 class="section-title">Mes réalisations</h2>
+  </div>
+  <div class="projects-grid fade-up">
+    <div class="project-card">
+      <div class="project-thumb" style="background: linear-gradient(135deg, #d1fae5, #a7f3d0);">🌱🔐</div>
+      <div class="project-body">
+        <div class="project-top">
+          <h3>KaarangeBaay</h3>
+          <span class="status-pill"><span class="status-dot"></span> En développement</span>
+        </div>
+        <p>Solution de sécurisation de l'accès aux équipements agricoles grâce à une clé physique équipée d'un passkey non piratable. Un projet collaboratif qui vise à réduire les vulnérabilités des agriculteurs sénégalais.</p>
+        <div class="project-meta-row">
+          <span class="project-pill">Agriculture</span>
+          <span class="project-pill">Cybersécurité</span>
+          <span class="project-pill">Innovation</span>
+          <span class="project-pill">Dakar</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-empty">
+      <p>Vos créations design arrivent bientôt ici.</p>
+      <p style="font-size:0.85rem;">Contactez-moi pour en savoir plus sur mes réalisations.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="fade-up">
+    <p class="section-label">Compétences</p>
+    <h2 class="section-title">Mon expertise</h2>
+  </div>
+  <div class="skills-section fade-up">
+    <div>
+      <p class="skills-group-title">Design & Bureautique</p>
+      <div class="skills-grid">
+        <div class="skill-item">
+          <div class="skill-name">Microsoft Word</div>
+          <div class="skill-bar-bg"><div class="skill-bar" style="width:95%; background:#2d6a4f;"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">Microsoft Excel</div>
+          <div class="skill-bar-bg"><div class="skill-bar" style="width:93%; background:#1b4332;"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">Microsoft PowerPoint</div>
+          <div class="skill-bar-bg"><div class="skill-bar" style="width:95%; background:#b5935a;"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">Création d'affiches</div>
+          <div class="skill-bar-bg"><div class="skill-bar" style="width:90%; background:#2d6a4f;"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">Design de flyers</div>
+          <div class="skill-bar-bg"><div class="skill-bar" style="width:90%; background:#1b4332;"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">Mise en page print</div>
+          <div class="skill-bar-bg"><div class="skill-bar" style="width:88%; background:#b5935a;"></div></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="skills-group-title">Cybersécurité</p>
+      <div class="skills-grid">
+        <div class="skill-item">
+          <div class="skill-name">Sécurité des réseaux</div>
+          <div class="skill-bar-bg"><div class="skill-bar" style="width:75%; background:#2d6a4f;"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">Cryptographie</div>
+          <div class="skill-bar-bg"><div class="skill-bar" style="width:70%; background:#1b4332;"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">Sécurité des systèmes</div>
+          <div class="skill-bar-bg"><div class="skill-bar" style="width:72%; background:#b5935a;"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CV -->
+<section class="cv" id="cv">
+  <div class="fade-up">
+    <p class="section-label">Curriculum Vitae</p>
+    <h2 class="section-title">Mon parcours</h2>
+  </div>
+  <div class="cv-grid fade-up">
+    <div>
+      <p class="cv-group-title">Expérience</p>
+      <div class="cv-timeline">
+        <div class="cv-item">
+          <div class="cv-dot" style="background:#2d6a4f;"></div>
+          <div class="cv-content">
+            <h4>Co-fondateur – KaarangeBaay</h4>
+            <div class="cv-org">Projet agri-tech, Dakar</div>
+            <div class="cv-date">2024 – Présent</div>
+          </div>
+        </div>
+        <div class="cv-item">
+          <div class="cv-dot" style="background:#b5935a;"></div>
+          <div class="cv-content">
+            <h4>Designer Graphique Freelance</h4>
+            <div class="cv-org">Divers clients, Dakar</div>
+            <div class="cv-date">2018 – Présent</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="cv-group-title">Formation</p>
+      <div class="cv-timeline">
+        <div class="cv-item">
+          <div class="cv-dot" style="background:#2d6a4f;"></div>
+          <div class="cv-content">
+            <h4>Licence en Cybersécurité</h4>
+            <div class="cv-org">En cours – Dakar</div>
+            <div class="cv-date">En cours</div>
+          </div>
+        </div>
+        <div class="cv-item">
+          <div class="cv-dot" style="background:#b5935a;"></div>
+          <div class="cv-content">
+            <h4>Formation en Design Graphique</h4>
+            <div class="cv-org">Dakar</div>
+            <div class="cv-date">À compléter</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="fade-up">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Travaillons<br>ensemble</h2>
+  </div>
+  <div class="contact-wrapper fade-up">
+    <div>
+      <p class="contact-intro">Vous avez un projet de design, une collaboration ou une opportunité ? Je suis disponible et prêt à en discuter.</p>
+      <div class="contact-items">
+        <a class="contact-item" href="mailto:sowousmane250@gmail.com">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          sowousmane250@gmail.com
+        </a>
+        <a class="contact-item" href="tel:+221784374031">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          +221 78 437 40 31
+        </a>
+        <a class="contact-item" href="tel:+221769939746">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          +221 76 993 97 46
+        </a>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          Dakar, Sénégal
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <input type="text" placeholder="Votre nom complet" />
+      <input type="email" placeholder="Votre adresse email" />
+      <input type="text" placeholder="Sujet" />
+      <textarea placeholder="Décrivez votre projet..."></textarea>
+      <a href="mailto:sowousmane250@gmail.com" class="btn btn-dark">Envoyer le message</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>Ousmane Sow</strong> · Designer Créatif & Étudiant en Cybersécurité · Dakar, Sénégal<br>
+  <span style="font-size:0.75rem; margin-top:0.5rem; display:block;">© 2026 · Tous droits réservés</span>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
